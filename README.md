@@ -2,7 +2,7 @@
 ![](https://content.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Logo.svg.original.svg)
 # LinkedIn Networking
 
-Python code to automatically expend your LinkedIn network based on your interest
+Python code to automatically expand your LinkedIn network based on your interest
 
 
 
@@ -21,7 +21,7 @@ pip install selenium
  - Run `python parameters.py`
 
 
-## Contributing
+## Contribution
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 
