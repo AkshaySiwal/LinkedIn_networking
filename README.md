@@ -1,4 +1,4 @@
-# LinkedIn_networking
+# LinkedIn Networking
 
 Python code to automatically expend your LinkedIn network based on your interest
 
