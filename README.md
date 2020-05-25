@@ -10,14 +10,14 @@ Python code to automatically expend your LinkedIn network based on your interest
 
 ## Prerequisites
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install selenium.
 
 ```bash
 pip install selenium
 ```
 
 ## How to use ?
- - Open parameters.py file and provide your email id, password and keywords,
+ - Open parameters.py file and provide your email id, password, and keywords for search criteria.
  - Run `python parameters.py`
 
 
