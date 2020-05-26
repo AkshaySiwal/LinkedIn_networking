@@ -45,14 +45,15 @@ driver.find_element_by_id('username').send_keys(parameters.linkedin_username)
 driver.find_element_by_id('password').send_keys(parameters.linkedin_password)
 driver.find_element_by_xpath('//*[@type="submit"]').click()
 time.sleep(10)
-name = driver.find_elements_by_class_name('profile-rail-card__actor-link')[0].text.replace(' ', '')
+#name = driver.find_elements_by_class_name('profile-rail-card__actor-link')[0].text.replace(' ', '')
 
 
 
 
 
 # CSV file loging
-file_name = name + '_' + parameters.file_name.capitalize()
+#file_name = name + '_' + parameters.file_name.capitalize()
+file_name = parameters.file_name
 file_exists =  os.path.isfile(file_name)
 writer = csv.writer(open(file_name, 'a'))
 if not file_exists: writer.writerow(['Connection Summary'])
