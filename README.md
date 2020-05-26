@@ -18,7 +18,7 @@ pip install selenium
 
 ## How to use ?
  - Open parameters.py file and provide your email id, password, and keywords for search criteria.
- - Run `python parameters.py`
+ - Run `python linkedIn.py`
 
 
 ## Contribution
