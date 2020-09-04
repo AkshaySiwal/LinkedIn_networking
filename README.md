@@ -14,6 +14,7 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install seleniu
 
 ```bash
 pip install selenium
+pip install webdriver-manager
 ```
 
 ## How to use ?
