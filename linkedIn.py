@@ -1,4 +1,5 @@
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 import parameters, csv, os.path, time
 
@@ -39,7 +40,7 @@ def search_and_send_request(keywords, till_page, writer):
 
 
 # Login
-driver = webdriver.Chrome('/Users/asiwal/node_modules/chromedriver/bin/chromedriver')
+driver = webdriver.Chrome(ChromeDriverManager().install())
 driver.get('https://www.linkedin.com/login')
 driver.find_element_by_id('username').send_keys(parameters.linkedin_username)
 driver.find_element_by_id('password').send_keys(parameters.linkedin_password)
