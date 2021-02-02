@@ -16,26 +16,33 @@ def search_and_send_request(keywords, till_page, writer):
         html = driver.find_element_by_tag_name('html')
         html.send_keys(Keys.END)
         time.sleep(5)
-        linkedin_urls = driver.find_elements_by_class_name('search-result__action-button')
+        linkedin_urls = driver.find_elements_by_class_name('reusable-search__result-container')
         print('INFO: %s connections found on page %s' % (len(linkedin_urls), page))
-        for connection in linkedin_urls:
+        for index, result in enumerate(linkedin_urls, start=1):
+            text = result.text.split('\n')[0]
+            connection = result.find_elements_by_class_name('artdeco-button__text')[0]
             if connection.text == 'Connect':
                 try:
                     coordinates = connection.location_once_scrolled_into_view # returns dict of X, Y coordinates
                     driver.execute_script("window.scrollTo(%s, %s);" % (coordinates['x'], coordinates['y']))
-                    text = str(connection.get_attribute('aria-label'))
-                    print("INFO: %s" % (text))
                     time.sleep(5)
                     connection.click()
                     time.sleep(5)
                     if driver.find_elements_by_class_name('artdeco-button--primary')[0].is_enabled():
                         driver.find_elements_by_class_name('artdeco-button--primary')[0].click()
                         writer.writerow([text])
+                        print("%s ) SENT: %s" % (index, text))
                     else:
                         driver.find_elements_by_class_name('artdeco-modal__dismiss')[0].click()
+                        print("%s ) CANT: %s" % (index, text))
                 except Exception as e:
-                    print('ERROR: %s' % (e))
+                    print('%s ) ERROR: %s' % (index, text))
                 time.sleep(5)
+            elif connection.text == 'Pending':
+                    print("%s ) PENDING: %s" % (index, text))
+            else:
+                    if text : print("%s ) CANT: %s" % (index, text))
+                    else: print("%s ) ERROR: You might have reached limit" % (index))
 
 
 
