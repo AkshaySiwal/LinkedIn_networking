@@ -20,7 +20,12 @@ def search_and_send_request(keywords, till_page, writer):
         print('INFO: %s connections found on page %s' % (len(linkedin_urls), page))
         for index, result in enumerate(linkedin_urls, start=1):
             text = result.text.split('\n')[0]
-            connection = result.find_elements_by_class_name('artdeco-button__text')[0]
+            connection_action = result.find_elements_by_class_name('artdeco-button__text')
+            if connection_action:
+                connection = connection_action[0]
+            else: 
+                print("%s ) CANT: %s" % (index, text))
+                continue
             if connection.text == 'Connect':
                 try:
                     coordinates = connection.location_once_scrolled_into_view # returns dict of X, Y coordinates
