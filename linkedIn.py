@@ -52,12 +52,14 @@ def search_and_send_request(keywords, till_page, writer):
 
 
 # Login
-driver = webdriver.Chrome(ChromeDriverManager().install())
+driver = webdriver.Chrome('./chromedriver')
 driver.get('https://www.linkedin.com/login')
+time.sleep(10)
 driver.find_element_by_id('username').send_keys(parameters.linkedin_username)
 driver.find_element_by_id('password').send_keys(parameters.linkedin_password)
+time.sleep(5)
 driver.find_element_by_xpath('//*[@type="submit"]').click()
-time.sleep(10)
+time.sleep(50)
 #name = driver.find_elements_by_class_name('profile-rail-card__actor-link')[0].text.replace(' ', '')
 
 
