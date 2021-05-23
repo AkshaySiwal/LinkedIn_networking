@@ -4,21 +4,18 @@
 
 Python code to automatically expand your LinkedIn network based on your interest
 
-
-
-
-
 ## Prerequisites
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install selenium.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) 
+to install the prerequisites.
 
 ```bash
-pip install selenium
-pip install webdriver-manager
+pip install -r requirements.txt
 ```
 
 ## How to use ?
- - Open parameters.py file and provide your email id, password, and keywords for search criteria.
+ - Copy `parameters-sample.py` to `parameters.py` and edit `parameters.py` to 
+ provide your email id, password, and keywords for search criteria.
  - Run `python linkedIn.py`
 
 
