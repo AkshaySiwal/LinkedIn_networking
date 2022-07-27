@@ -2,6 +2,7 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 import parameters, csv, os.path, time
+from selenium.webdriver.common.by import By
 
 
 
@@ -13,14 +14,14 @@ def search_and_send_request(keywords, till_page, writer):
         query_url = 'https://www.linkedin.com/search/results/people/?keywords=' + keywords + '&origin=GLOBAL_SEARCH_HEADER&page=' + str(page)
         driver.get(query_url)
         time.sleep(5)
-        html = driver.find_element_by_tag_name('html')
+        html = driver.find_element(By.TAG_NAME,'html')
         html.send_keys(Keys.END)
         time.sleep(5)
-        linkedin_urls = driver.find_elements_by_class_name('reusable-search__result-container')
+        linkedin_urls = driver.find_elements(By.CLASS_NAME,'reusable-search__result-container')
         print('INFO: %s connections found on page %s' % (len(linkedin_urls), page))
         for index, result in enumerate(linkedin_urls, start=1):
             text = result.text.split('\n')[0]
-            connection_action = result.find_elements_by_class_name('artdeco-button__text')
+            connection_action = result.find_elements(By.CLASS_NAME,'artdeco-button__text')
             if connection_action:
                 connection = connection_action[0]
             else: 
@@ -33,12 +34,12 @@ def search_and_send_request(keywords, till_page, writer):
                     time.sleep(5)
                     connection.click()
                     time.sleep(5)
-                    if driver.find_elements_by_class_name('artdeco-button--primary')[0].is_enabled():
-                        driver.find_elements_by_class_name('artdeco-button--primary')[0].click()
+                    if driver.find_element(By.CLASS_NAME,'artdeco-button--primary')[0].is_enabled():
+                        driver.find_element(By.CLASS_NAME,'artdeco-button--primary')[0].click()
                         writer.writerow([text])
                         print("%s ) SENT: %s" % (index, text))
                     else:
-                        driver.find_elements_by_class_name('artdeco-modal__dismiss')[0].click()
+                        driver.find_element(By.CLASS_NAME,'artdeco-modal__dismiss')[0].click()
                         print("%s ) CANT: %s" % (index, text))
                 except Exception as e:
                     print('%s ) ERROR: %s' % (index, text))
@@ -54,9 +55,9 @@ def search_and_send_request(keywords, till_page, writer):
 # Login
 driver = webdriver.Chrome(ChromeDriverManager().install())
 driver.get('https://www.linkedin.com/login')
-driver.find_element_by_id('username').send_keys(parameters.linkedin_username)
-driver.find_element_by_id('password').send_keys(parameters.linkedin_password)
-driver.find_element_by_xpath('//*[@type="submit"]').click()
+driver.find_element(By.ID,'username').send_keys(parameters.linkedin_username)
+driver.find_element(By.ID,'password').send_keys(parameters.linkedin_password)
+driver.find_element(By.XPATH,'//*[@type="submit"]').click()
 time.sleep(10)
 #name = driver.find_elements_by_class_name('profile-rail-card__actor-link')[0].text.replace(' ', '')
 
