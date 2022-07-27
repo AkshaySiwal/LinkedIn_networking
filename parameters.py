@@ -1,5 +1,5 @@
 file_name = 'connections.csv'
-linkedin_username = 'XXXXX@gmail.com'
-linkedin_password = 'XXXXXX'
+linkedin_username = 'XXXXXX@gmail.com'
+linkedin_password = 'XXXXXXX'
 keywords = 'DevOps,Linux,Python,AWS'
 till_page = 10
