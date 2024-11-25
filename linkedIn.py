@@ -16,7 +16,7 @@ def search_and_send_request(keywords, till_page, writer, ignore_list=[]):
         html = driver.find_element(By.TAG_NAME, 'html')
         html.send_keys(Keys.END)
         time.sleep(5)
-        linkedin_urls = driver.find_elements(By.CLASS_NAME, 'reusable-search__result-container')
+        linkedin_urls = driver.find_elements(By.CLASS_NAME, 'linked-area')
         print('INFO: %s connections found on page %s' % (len(linkedin_urls), page))
         for index, result in enumerate(linkedin_urls, start=1):
             text = result.text.split('\n')[0]
